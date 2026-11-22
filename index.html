@@ -68,9 +68,42 @@
         <a class="text-link" href="#credentials">看看專業資格</a>
       </div>
     </section>
-    <section class="credentials-section" id="credentials" aria-labelledby="credentials-title"><div class="wrap"><div class="section-heading"><div><p class="kicker">QUALIFICATIONS</p><h2 id="credentials-title">英文能力與證照</h2></div></div><div class="credential-grid"><article class="credential-card"><div class="credential-image"><img src="assets/certificate-toeic.webp" width="1086" height="786" alt="已遮蔽姓名與 QR Code 的 TOEIC 880 分金色證書" loading="lazy"></div><div class="credential-info"><span class="credential-icon" aria-hidden="true">A<span>+</span></span><div><h3>TOEIC 880（金色證書）</h3><p>聽力與閱讀測驗</p></div></div></article><article class="credential-card"><div class="credential-image"><img src="assets/certificate-gept.webp" width="1024" height="768" alt="已遮蔽姓名、序號及簽名的全民英檢中高級合格證書" loading="lazy"></div><div class="credential-info"><span class="credential-icon mint-icon" aria-hidden="true">✓</span><div><h3>全民英檢中高級</h3><p>聽、說、讀、寫通過</p></div></div></article></div></div></section>
+    <section class="credentials-section" id="credentials" aria-labelledby="credentials-title"><div class="wrap">
+      <div class="section-heading"><div><p class="kicker">QUALIFICATIONS</p><h2 id="credentials-title">學歷與專業資格</h2></div></div>
+      <div class="credential-grid">
+        <article class="credential-card"><a class="credential-image" href="assets/certificate-toeic.webp" data-image-viewer data-caption="TOEIC 880（金色證書）" aria-label="放大檢視 TOEIC 880 金色證書"><img src="assets/certificate-toeic.webp" width="1086" height="786" alt="已遮蔽姓名與 QR Code 的 TOEIC 880 分金色證書" loading="lazy"><span>點圖放大</span></a><div class="credential-info"><span class="credential-icon" aria-hidden="true">A<span>+</span></span><div><h3>TOEIC 880（金色證書）</h3><p>聽力與閱讀測驗</p></div></div></article>
+        <article class="credential-card"><a class="credential-image" href="assets/certificate-gept.webp" data-image-viewer data-caption="全民英檢中高級" aria-label="放大檢視全民英檢中高級證書"><img src="assets/certificate-gept.webp" width="1024" height="768" alt="已遮蔽姓名、序號及簽名的全民英檢中高級合格證書" loading="lazy"><span>點圖放大</span></a><div class="credential-info"><span class="credential-icon mint-icon" aria-hidden="true">✓</span><div><h3>全民英檢中高級</h3><p>聽、說、讀、寫通過</p></div></div></article>
+        <article class="credential-card"><a class="credential-image" href="assets/certificate-training.webp" data-image-viewer data-caption="專業正音師資培訓班結業證書" aria-label="放大檢視專業正音師資培訓班結業證書"><img src="assets/certificate-training.webp" width="1400" height="1000" alt="中華語文教育推廣學會專業正音師資培訓班結業證書" loading="lazy"><span>點圖放大</span></a><div class="credential-info"><span class="credential-icon peach-icon" aria-hidden="true">文</span><div><h3>專業正音師資培訓班</h3><p>中華語文教育推廣學會・結業證書</p></div></div></article>
+        <article class="credential-card"><a class="credential-image" href="assets/certificate-masters.webp" data-image-viewer data-caption="國立臺灣師範大學碩士學位證書" aria-label="放大檢視國立臺灣師範大學碩士學位證書"><img src="assets/certificate-masters.webp" width="1150" height="1627" alt="已遮蔽生日與證書編號的國立臺灣師範大學碩士學位證書" loading="lazy"><span>點圖放大</span></a><div class="credential-info"><span class="credential-icon sky-icon" aria-hidden="true">學</span><div><h3>國立臺灣師範大學碩士</h3><p>圖文傳播學系・工學碩士</p></div></div></article>
+      </div>
+    </div></section>
     <section class="contact-section wrap" id="contact" aria-labelledby="contact-title"><div class="contact-card"><div class="contact-doodle" aria-hidden="true">✿</div><div><p class="kicker">LET'S TALK</p><h2 id="contact-title">一起聊聊孩子的學習吧！</h2><p>目前規劃新竹地區 1–5 人英文應用小班。課程內容與安排，可依孩子的年齡、英文程度及興趣討論。</p></div><div class="contact-action"><span class="contact-pending">聯絡資訊</span><small>公開聯絡方式確認後，這裡會提供直接聯繫的入口。</small></div></div></section>
   </main>
   <footer class="site-footer"><div class="wrap footer-inner"><span class="brand"><span class="brand-mark" aria-hidden="true">✿</span><span>Mia <em>English Lab</em></span></span><p>讓孩子用英文探索、創作與表達。</p><a href="#top">回到頁首 ↑</a></div></footer>
+  <dialog class="image-dialog" id="image-dialog" aria-label="證照圖片放大檢視">
+    <button class="dialog-close" type="button" aria-label="關閉圖片">×</button>
+    <img id="dialog-image" alt="">
+    <p id="dialog-caption"></p>
+  </dialog>
+  <script>
+    const imageDialog = document.getElementById('image-dialog');
+    const dialogImage = document.getElementById('dialog-image');
+    const dialogCaption = document.getElementById('dialog-caption');
+    let lastImageLink;
+    document.querySelectorAll('[data-image-viewer]').forEach(link => {
+      link.addEventListener('click', event => {
+        if (typeof imageDialog.showModal !== 'function') return;
+        event.preventDefault();
+        lastImageLink = link;
+        dialogImage.src = link.href;
+        dialogImage.alt = link.querySelector('img').alt;
+        dialogCaption.textContent = link.dataset.caption;
+        imageDialog.showModal();
+      });
+    });
+    imageDialog.querySelector('.dialog-close').addEventListener('click', () => imageDialog.close());
+    imageDialog.addEventListener('click', event => { if (event.target === imageDialog) imageDialog.close(); });
+    imageDialog.addEventListener('close', () => { dialogImage.removeAttribute('src'); lastImageLink?.focus(); });
+  </script>
 </body>
 </html>
