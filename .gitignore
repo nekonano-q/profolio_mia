@@ -1,0 +1,10 @@
+github_io.txt
+更新網站.command
+.DS_Store
+上傳網站到GitHub.command
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
